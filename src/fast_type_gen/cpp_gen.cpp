@@ -122,6 +122,7 @@ void cpp_gen::gen_integer(const mfast::integer_field_instruction_base* inst,
 {
   gen_field(inst, gen_op_context(inst->name(), inst->op_context()), cpp_type, pIndex);
   out_ << "  int_value_storage<"<< cpp_type << "_t>(" << initial_value   << "), // initial_value\n"
+       << "  " << inst->decimal_place() << ", // decimalPlace\n"
        << "  " << inst->tag() << "); // tag\n\n";
 }
 
@@ -178,6 +179,7 @@ void cpp_gen::visit(const mfast::decimal_field_instruction* inst, void* pIndex)
   if (!init_value.is_empty())
     out_ <<  init_value.of_decimal.mantissa_ << "LL, " << static_cast<int> (init_value.of_decimal.exponent_);
   out_ << "), // initial_value\n"
+       << "  " << inst->decimal_place() << ", //decimalPlaces\n"
        << "  " << inst->tag() << "); // tag\n\n";
 
 }

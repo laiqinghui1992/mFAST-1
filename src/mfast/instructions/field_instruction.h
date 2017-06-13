@@ -167,6 +167,11 @@ namespace mfast {
       return id_;
     }
 
+    int32_t decimal_place() const
+    {
+        return decimal_place_;
+    }
+
     const char* name() const
     {
       return name_;
@@ -206,7 +211,8 @@ namespace mfast {
                       uint32_t        id,
                       const char*     name,
                       const char*     ns,
-                      instruction_tag tag);
+                      instruction_tag tag,
+                      int32_t        decimal_place = 0);
 
     field_instruction(const field_instruction& other);
 
@@ -219,6 +225,11 @@ namespace mfast {
     void id(uint32_t v)
     {
       id_ = v;
+    }
+
+    void decimal_place(int32_t v)
+    {
+        decimal_place_ = v;
     }
 
     void name(const char* v)
@@ -262,6 +273,7 @@ namespace mfast {
     const char* name_;
     const char* ns_;
     instruction_tag tag_;
+    int32_t decimal_place_/* = 0*/;
   };
 
   template <typename T>

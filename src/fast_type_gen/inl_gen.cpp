@@ -558,6 +558,14 @@ void inl_gen::gen_accessors(const mfast::field_instruction* inst,
            << "  (*this)[" << index << "].omit();\n"
            << "}\n\n";
     }
+    if (inst->decimal_place() != 0)
+    {
+        out_ << "inline int32_t \n"
+            << cref_scope_.str() << "get_" << name << "_decimalPlaces() const\n"
+            << "{\n"
+            << "  return " << inst->decimal_place() << ";\n"
+            << "}\n\n";
+    }
   }
 }
 

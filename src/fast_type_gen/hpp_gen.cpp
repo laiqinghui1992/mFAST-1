@@ -43,6 +43,10 @@ void hpp_gen::gen_primitive (const char* cpp_type, const mfast::field_instructio
   std::string name(cpp_name(inst));
   header_cref_ << indent << "mfast::"<< cpp_type << "_cref get_" << name << "() const;\n";
   header_cref_ << indent << "mfast::"<< cpp_type << "_cref try_get_" << name << "() const;\n";
+  if (inst->decimal_place() != 0)
+  {
+      header_cref_ << indent << "int32_t get_" << name << "_decimalPlaces() const;\n";
+  }
   if (!is_const_field(inst))
   {
     header_mref_ << indent << "mfast::"<< cpp_type << "_mref set_" << name << "() const;\n";

@@ -37,7 +37,8 @@ namespace mfast
                                    const char*          ns,
                                    const op_context_t*  context,
                                    const value_storage& initial_storage,
-                                   instruction_tag      tag);
+                                   instruction_tag      tag,
+                                   int32_t              decimal_place=0);
 
     integer_field_instruction_base(const integer_field_instruction_base& other);
     virtual void construct_value(value_storage& storage,
@@ -111,6 +112,7 @@ namespace mfast
                           const char*          ns,
                           const op_context_t*  context,
                           int_value_storage<T> initial_value,
+                          int32_t              decimal_place = 0,
                           instruction_tag      tag = instruction_tag());
 
     int_field_instruction(const int_field_instruction& other);
@@ -128,6 +130,7 @@ namespace mfast
                                                   const char*          ns,
                                                   const op_context_t*  context,
                                                   int_value_storage<T> initial_value,
+                                                  int32_t              decimal_place,
                                                   instruction_tag      tag)
     : integer_field_instruction_base(operator_id,
                                      field_type_trait<T>::id,
@@ -137,7 +140,8 @@ namespace mfast
                                      ns,
                                      context,
                                      initial_value.storage_,
-                                     tag)
+                                     tag,
+                                     decimal_place)
   {
   }
 

@@ -182,6 +182,7 @@ namespace mfast
         get_ns(inst, alloc()),
         fop.context_,
         int_value_storage<IntType>(fop.initial_value_),
+        get_decimal_place(inst),
         parse_tag(inst)
         );
 
@@ -251,6 +252,7 @@ namespace mfast
           exponent_op.context_,
           mantissa_instruction,
           decimal_value_storage(exponent_op.initial_value_),
+          get_decimal_place(inst),
           parse_tag(inst));
       }
       else {
@@ -265,6 +267,7 @@ namespace mfast
           get_ns(inst, alloc()),
           decimal_op.context_,
           decimal_value_storage(decimal_op.initial_value_),
+          get_decimal_place(inst),
           parse_tag(inst));
       }
 
@@ -536,7 +539,8 @@ namespace mfast
           length_attributes.get_name(alloc()),
           length_attributes.get_ns(length_instruction, alloc()),
           length_fop.context_,
-          int_value_storage<uint32_t>(length_fop.initial_value_)
+          int_value_storage<uint32_t>(length_fop.initial_value_),
+          length_attributes.get_decimal_place(length_instruction)
           );
       }
     else if (length_instruction->optional() != (get_presence(inst) == mfast::presence_optional))
@@ -548,7 +552,8 @@ namespace mfast
           length_instruction->name(),
           length_instruction->ns(),
           length_instruction->op_context(),
-          int_value_storage<uint32_t>(length_instruction->initial_value())
+          int_value_storage<uint32_t>(length_instruction->initial_value()),
+          length_instruction->decimal_place()
           );
       }
       return length_instruction;
